@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Notícias de Vitória, Vila Velha, Serra, Guarapari e Transcol – Atualizações em Tempo Real</title>
+  <meta name="description" content="Acompanhe as últimas notícias de Vitória, Vila Velha, Serra, Guarapari e Transcol: eventos, economia, cultura e muito mais." />
+  <meta name="keywords" content="notícias vitória, vila velha, serra, guarapari, espírito santo, transcol" />
+  <meta name="robots" content="index, follow" />
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: orange; /* fundo laranja */
+      color: #333;
+      line-height: 1.6;
+    }
+    header, main, footer {
+      max-width: 900px;
+      margin: 0 auto 30px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    h1 { color: #0057b8; font-size: 2rem; margin-bottom: 5px; }
+    header p { color: #666; margin-top: 0; }
+    #slider {
+      max-width: 900px;
+      margin: 20px auto;
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      height: 300px;
+    }
+    #slider img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      position: absolute;
+      top: 0; left: 0;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    #slider img.active { opacity: 1; z-index: 1; }
+    section.city-news { margin-top: 30px; }
+    section.city-news h2 {
+      color: #0077cc;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 5px;
+    }
+    ul.news-list { list-style: none; padding-left: 0; }
+    ul.news-list li { margin-bottom: 12px; }
+    ul.news-list li a {
+      text-decoration: none;
+      color: #0057b8;
+      font-weight: bold;
+    }
+    ul.news-list li a:hover { text-decoration: underline; }
+    time { color: #999; font-size: 0.9rem; }
+    footer { font-size: 0.9rem; color: #777; text-align: center; }
+    #unique-id {
+      background: #222;
+      color: #fff;
+      font-family: monospace;
+      padding: 16px;
+      margin-top: 40px;
+      border-radius: 6px;
+      word-wrap: break-word;
+      font-size: 0.95rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+    #ads {
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: whitesmoke;
+      padding: 30px;
+      border-top-right-radius: 200px;
+      border-top-left-radius: 50px;
+    }
+    a {
+      font-family: 'Franklin Gothic Medium','Arial Narrow',Arial,sans-serif;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Notícias do Espírito Santo</h1>
+    <a href="https://wa.me/5527999497001?text=aluguel/20%temporadaguarapari" target="_blank">Aluguel temporada</a>
+    <br><br>
+    <a href="https://wa.me/5527999860405?text=" target="_blank">CONTATO 02 GUARAPARI TEMPORADA</a>
+    <p>Acompanhe as últimas atualizações das cidades de Vitória, Vila Velha, Serra, Guarapari e Transcol.</p>
+  </header>
+
+  <div id="slider">
+    <img src="https://raw.githubusercontent.com/victorxx/guaraparilinhadotempo/refs/heads/main/guarapari4.jpeg" alt="Imagem 1" class="active">
+    <img src="https://raw.githubusercontent.com/victorxx/guaraparilinhadotempo/refs/heads/main/guarapari5.jpeg" alt="Imagem 2">
+    <img src="https://raw.githubusercontent.com/victorxx/guaraparilinhadotempo/refs/heads/main/guarapari6.jpeg" alt="Imagem 3">
+  </div>
+
+  <main id="news-container"></main>
+
+  <footer>
+    <p>&copy; Notícias Capixabas – Atualizado em <span id="data-atualizacao"></span></p>
+    <div id="unique-id" aria-label="Identificador único"></div>
+  </footer>
+
+  <script>
+    const noticias = {
+         "Transcol": [
+        { title: "Transcol adiciona nova linha expressa entre Vitória e Cariacica", url: "#", date: "2025-07-07" },
+        { title: "Aplicativo do Transcol agora mostra ônibus em tempo real", url: "#", date: "2025-07-06" },
+        { title: "Passageiros reclamam de instabilidade no app ÔnibusGV", url: "https://es360.com.br/dia-a-dia/noticia/passageiros-do-transcol-reclamam-de-instabilidade-no-app-onibusgv/", date: "2025-07-07" },
+        { title: "Caiu? Usuários relatam instabilidade no aplicativo ÔnibusGV", url: "https://www.agazeta.com.br/agora/caiu-usuarios-relatam-instabilidade-no-aplicativo-onibusgv-0225", date: "2025-02-05" },
+        { title: "App vai mostrar em tempo real lotação do Transcol via InBus", url: "https://es360.com.br/dia-a-dia/noticia/app-vai-mostrar-em-tempo-real-lotacao-do-transcol/", date: "2025-06-XX" },
+        { title: "Mais 100 ônibus do Transcol passam a contar com Wi‑Fi e entretenimento", url: "https://www.es.gov.br/Noticia/duzentos-veiculos-do-transcol-passam-a-contar-com-o-servico-de-wi-fi", date: "2025-06-24" },
+        { title: "Sistema Transcol vai receber 40 novos ônibus com ar‑condicionado", url: "https://www.agazeta.com.br/agora/sistema-transcol-vai-receber-40-novos-onibus-com-ar-condicionado-0625", date: "2025-06-06" },
+        { title: "Transcol ganha 40 novos ônibus com ar‑condicionado, Wi‑Fi e acessibilidade", url: "https://gvbus.org.br/transcol-ganha-40-novos-onibus-com-ar-condicionado/", date: "2025-06-13" },
+        { title: "Fábrica de ônibus entrega 40 novos veículos ao Transcol no ES", url: "https://www.folhavitoria.com.br/economia/fabrica-de-onibus-atinge-marca-de-20-mil-unidades-produzidas-no-es/", date: "2025-06-25" },
+        { title: "Transcol receberá 40 ônibus Euro 6 até sábado", url: "https://www.agazeta.com.br/agora/sistema-transcol-vai-receber-40-novos-onibus-com-ar-condicionado-0625", date: "2025-06-06" },
+        { title: "Avanços e desafios no transporte público da Grande Vitória", url: "https://es360.com.br/plural/avancos-e-desafios-no-transporte-publico-na-grande-vitoria", date: "2025-??-??" },
+        { title: "300 novos ônibus com ar‑condicionado e Wi‑Fi prontos para operar (2021)", url: "https://www.folhavitoria.com.br/geral/noticia/08/2021/trezentos-novos-onibus-com-ar-condicionado-e-wi-fi-estao-prontos-para-rodar-na-grande-vitoria", date: "2021-08-08" },
+      ],
+      "Vitória": [
+        { title: "Festival Gastronômico movimenta a Praia do Canto", url: "#", date: "2025-07-07" },
+        { title: "Prefeitura lança programa de mobilidade urbana", url: "#", date: "2025-07-06" }
+      ],
+      "Vila Velha": [
+        { title: "Reforma do Convento da Penha entra na reta final", url: "#", date: "2025-07-07" },
+        { title: "Novos pontos de Wi-Fi gratuito são instalados", url: "#", date: "2025-07-05" }
+      ],
+      "Serra": [
+        { title: "Feira de Empreendedorismo atrai jovens no Parque da Cidade", url: "#", date: "2025-07-07" },
+        { title: "Serra amplia vacinação contra gripe em bairros prioritários", url: "#", date: "2025-07-03" }
+      ],
+      "Guarapari": [
+        { title: "Guarapari registra aumento no turismo durante as férias de julho", url: "#", date: "2025-07-07" },
+        { title: "Projeto ambiental recolhe mais de 2 toneladas de lixo nas praias", url: "#", date: "2025-07-05" }
+      ],
+      
+    };
+
+    function renderNoticias() {
+      const container = document.getElementById('news-container');
+      for (const cidade in noticias) {
+        const secao = document.createElement('section');
+        secao.className = 'city-news';
+        const h2 = document.createElement('h2');
+        h2.textContent = `Notícias de ${cidade}`;
+        secao.appendChild(h2);
+        const ul = document.createElement('ul');
+        ul.className = 'news-list';
+        noticias[cidade].forEach(noticia => {
+          const li = document.createElement('li');
+          const a = document.createElement('a');
+          a.href = noticia.url;
+          a.textContent = noticia.title;
+          const time = document.createElement('time');
+          time.dateTime = noticia.date;
+          time.textContent = ` (${noticia.date})`;
+          li.appendChild(a);
+          li.appendChild(time);
+          ul.appendChild(li);
+        });
+        secao.appendChild(ul);
+        container.appendChild(secao);
+      }
+    }
+
+    function gerarIdentificadorUnico(tamanho = 128) {
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%&*-_+=?';
+      let resultado = '';
+      for (let i = 0; i < tamanho; i++) {
+        resultado += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return resultado;
+    }
+
+    function iniciarSlider() {
+      const slides = document.querySelectorAll('#slider img');
+      let index = 0;
+      setInterval(() => {
+        slides[index].classList.remove('active');
+        index = (index + 1) % slides.length;
+        slides[index].classList.add('active');
+      }, 4000);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderNoticias();
+      document.getElementById('data-atualizacao').textContent = new Date().toLocaleString('pt-BR');
+      document.getElementById('unique-id').textContent = `Identificador único: ${gerarIdentificadorUnico()}`;
+      iniciarSlider();
+    });
+  </script>
+
+  <div id="ads">
+    <a href="#" target="_blank" id="ok">CONFERIR</a>
+    <script>
+      function randomizarrr() {
+        const links = [
+          "https://wa.me/5527999860405?text=Olá%2C%20tenho%20interesse%20em%20soluções%20de%20VPS%20e%20ERP.",
+          "https://hostinger.com.br/?REFERRALCODE=1VICTOR444",
+          // ... (todos os links que você listou)
+          "https://humorrandompiada02.vercel.app/",
+          "https://randomico02.vercel.app/",
+          "https://shoppingrandom01.vercel.app/",
+          "https://randomico02.netlify.app/",
+          "https://carro.wuaze.com/conferir/",
+          "https://arquivos.wuaze.com/conferir/",
+          "https://hostinger.com.br/?REFERRALCODE=1VICTOR444",
+          "https://geocredibnkvitoria.com/",
+          "https://jogosantigos472302513.wordpress.com/",
+          "https://brasilbrasileiross.blogspot.com/",
+          "https://ocomerciobrasileironoticia.blogspot.com/2025/05/erp-profissional-para-empresas.html",
+          "https://www.youtube.com/watch?v=3yVwyfsq7ZQ",
+          "https://nandomoura01random.vercel.app/",
+          "https://www.youtube.com/@byclixmidia1008",
+          "https://www.youtube.com/@victorfenix-s9o",
+          "https://recomendadodia23.blogspot.com/",
+          "https://dokehost.blogspot.com/",
+          "https://www.dailymotion.com/victorsaib",
+              "https://wa.me/5527999860405?text=Olá%2C%20tenho%20interesse%20em%20soluções%20de%20VPS%20e%20ERP.",
+                            "https://hostinger.com.br/?REFERRALCODE=1VICTOR444",
+                            "https://wa.me/5527999860405?text=Olá%2C%20tenho%20interesse%20em%20soluções%20de%20VPS%20e%20ERP.",
+                    "https://nandomoura01random.vercel.app/",
+                    "https://hostinger.com.br/?REFERRALCODE=1VICTOR444",
+                    "https://geocredibnkvitoria.com/",
+                    "https://www.youtube.com/@gamenologia",
+                    "https://www.airbnb.com.br/r/saibvictore?s=6&t=061n0g",
+                    "https://wa.me/5527999860405?text=Olá%2C%20tenho%20interesse%20em%20soluções%20de%20VPS%20e%20ERP.%20Pode%20me%20ajudar%3F",
+                    "https://wa.me/5527999497001?text=ola%20quero%20saber%20sobre%20seguro%20e%20consorcio",
+                    "https://nandomoura01random.vercel.app/",
+                    "https://www.facebook.com/capixabadagemaes/",
+                    "https://www.youtube.com/@gamenologia/videos",
+                    "https://www.larissasaib.com.br/",
+                    "https://www.larissasaib.com.br/",
+                    "https://www.instagram.com/geocredibnkvitoria/",
+                    "https://www.youtube.com/watch?v=zjF_yzaEN9I&t=23s",
+                    "https://www.youtube.com/watch?v=JbWY7nvpBA0",
+                    "https://www.youtube.com/watch?v=qLsURrNcdf8",
+                    "https://www.youtube.com/@byclixmidia1008",
+                    "https://www.youtube.com/@gamenologia",
+                    "https://brasilbrasileiross.blogspot.com/",
+                    "https://geocredibnkvitoria.com/",
+                    "https://ocomerciobrasileironoticia.blogspot.com/2025/05/erp-profissional-para-empresas.html",
+                    "https://jogosantigos472302513.wordpress.com/maquinas-vps-temos-todas-as-opcoes-de-maqinas-para-voce/",
+                    "https://www.airbnb.com.br/r/saibvictore?s=6&t=061n0g",
+                    "https://hostinger.com.br/?REFERRALCODE=1VICTOR444",
+                    "https://www.youtube.com/watch?v=3yVwyfsq7ZQ",
+                    "https://www.youtube.com/@byclixmidia1008",
+                    "https://www.youtube.com/@victorfenix-s9o",
+                    "https://recomendadodia23.blogspot.com/",
+                    "https://brasilbrasileiross.blogspot.com/",
+                                    "https://dokehost.blogspot.com/",
+                                "https://dai.ly/k72EJDCuNTXzqLDntRs",
+                                "https://www.youtube.com/watch?v=zjF_yzaEN9I&t=23s",
+                                "https://www.youtube.com/watch?v=JbWY7nvpBA0",
+                                "https://www.youtube.com/watch?v=qLsURrNcdf8",
+                                "https://www.youtube.com/@byclixmidia1008",
+                                "https://www.youtube.com/@gamenologia",
+                                "https://brasilbrasileiross.blogspot.com/",
+                                "https://geocredibnkvitoria.com/",
+                                "https://ocomerciobrasileironoticia.blogspot.com/2025/05/erp-profissional-para-empresas.html",
+                                "https://jogosantigos472302513.wordpress.com/maquinas-vps-temos-todas-as-opcoes-de-maqinas-para-voce/",
+                                "https://www.airbnb.com.br/r/saibvictore?s=6&t=061n0g",
+                                "https://hostinger.com.br/?REFERRALCODE=1VICTOR444",
+                                "https://www.youtube.com/watch?v=3yVwyfsq7ZQ",
+                                "https://humorrandompiada02.vercel.app/",
+                                "https://randomico02.vercel.app/",
+                                "https://randomico02.netlify.app/",
+                                "https://carro.wuaze.com/conferir/",
+                                "https://arquivos.wuaze.com/conferir/",
+                                "https://hostinger.com.br/?REFERRALCODE=1VICTOR444",
+                                "https://geocredibnkvitoria.com/",
+                                "https://jogosantigos472302513.wordpress.com/",
+                                "https://brasilbrasileiross.blogspot.com/",
+                                "https://ocomerciobrasileironoticia.blogspot.com/2025/05/erp-profissional-para-empresas.html",
+                                "https://randomico02.vercel.app/",
+                                "https://shoppingrandom01.vercel.app/",
+                                "https://randomshopping.netlify.app/",
+                                "https://vendaschamada.blogspot.com/",
+                                "https://randomico02.netlify.app/",
+                                "https://carro.wuaze.com/conferir/",
+                                "https://arquivos.wuaze.com/conferir/",
+                                "https://hostinger.com.br/?REFERRALCODE=1VICTOR444",
+                                "https://geocredibnkvitoria.com/",
+                                "https://jogosantigos472302513.wordpress.com/",
+                                "https://brasilbrasileiross.blogspot.com/",
+                                "https://ocomerciobrasileironoticia.blogspot.com/2025/05/erp-profissional-para-empresas.html",
+                                "https://wa.me/5527999860405?text=Olá%2C%20tenho%20interesse%20em%20soluções%20de%20VPS%20e%20ERP.%20Pode%20me%20ajudar%3F",
+                                "https://wa.me/5527999497001?text=ola%20quero%20saber%20sobre%20seguro%20e%20consorcio",
+                                "https://nandomoura01random.vercel.app/",
+                                "https://www.facebook.com/capixabadagemaes/",
+                                "https://www.youtube.com/@gamenologia/videos",
+                                "https://www.larissasaib.com.br/",
+                                "https://www.instagram.com/geocredibnkvitoria/",
+                                "https://www.youtube.com/watch?v=zjF_yzaEN9I&t=23s",
+                                "https://www.youtube.com/watch?v=JbWY7nvpBA0",
+                                "https://www.youtube.com/watch?v=qLsURrNcdf8",
+                                "https://www.youtube.com/@byclixmidia1008",
+                                "https://www.youtube.com/@gamenologia",
+                                "https://jogosantigos472302513.wordpress.com/maquinas-vps-temos-todas-as-opcoes-de-maqinas-para-voce/",
+                                "https://www.airbnb.com.br/r/saibvictore?s=6&t=061n0g",
+                                "https://recomendadodia23.blogspot.com/",
+                                "https://dokehost.blogspot.com/",
+                                "https://www.dailymotion.com/victorsaib"
+        ];
+        const escolher = links[Math.floor(Math.random() * links.length)];
+        document.getElementById('ok').href = escolher;
+      }
+      setInterval(randomizarrr, 800);
+    </script>
+  </div>
+
+</body>
+</html>
