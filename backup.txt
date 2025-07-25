@@ -114,6 +114,9 @@
   <script>
     const noticias = {
          "Transcol": [
+        {title:". Entrega de novos ônibus com ar-condicionado e motor sustentável"},
+        {title:"Futuro sustentável: elétricos e biometano"},
+        {title:" Linhas alimentadoras ampliadas em Vitória"},
         { title: "Transcol adiciona nova linha expressa entre Vitória e Cariacica", url: "#", date: "2025-07-07" },
         { title: "Aplicativo do Transcol agora mostra ônibus em tempo real", url: "#", date: "2025-07-06" },
         { title: "Passageiros reclamam de instabilidade no app ÔnibusGV", url: "https://es360.com.br/dia-a-dia/noticia/passageiros-do-transcol-reclamam-de-instabilidade-no-app-onibusgv/", date: "2025-07-07" },
